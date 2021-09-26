@@ -1,0 +1,43 @@
+<html>
+<head>
+
+<link rel="stylesheet" href="TemplateData/style.css">
+    <script src="TemplateData/UnityProgress.js"></script>
+	<script src="baldi.js"></script>
+    <script>
+      var gameInstance = UnityLoader.instantiate("gameContainer", "baldi.json", {onProgress: UnityProgress,Module:{onRuntimeInitialized: function() {UnityProgress(gameInstance, "complete")}}});
+    </script>
+    <div id="back">
+<a href="/goldenera.html" id="backlink">
+<img src="/assets/images/back.png" alt="Home" id="backimg"></a>
+<style>
+#backimg {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 50px;
+  height: 50px;
+  object-fit: scale-down;
+}
+#backlink {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 50px;
+  height: 50px;
+  object-fit: scale-down;
+  background-color: ;
+  color: none;
+}
+</style>
+    </div>
+</head>
+<body>
+<div class="webgl-content">
+  <center>
+        <div id="gameContainer" style="width: 800px; height: 560px; margin: auto"></div>
+        </div>
+  <script src="firebase-app.js"></script>
+  </center>
+</body>
+</html>

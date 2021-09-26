@@ -1,0 +1,225 @@
+#ifr {
+	display:none;
+	position:fixed;
+	bottom:45px;
+	border: 0;
+	z-index:30;
+	top:0px;
+	left:0;
+	opacity:1;
+	width: 100%;
+	height: 100%;
+	background:white;
+	transition: ease-in-out .075s;
+}
+
+.container {
+	width: 740px;
+	margin: 10px auto 120px auto;
+}
+
+.card {
+	display: table;
+	max-height:80%
+}
+
+.form {
+	justify-content: space-evenly;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	position: relative;
+	height: 55px;
+	width: 100%;
+	gap: 5px;
+}
+
+.form * {
+	font-family: inherit;
+}
+
+.badge {
+	width: 17px;
+	height: 12px;
+	background: #2A9FD6;
+	margin: 0 2px;
+	float: right;
+	padding: 2px 4px;
+	border-radius: 2px;
+	color: white;
+	font-size: 12px;
+	font-weight: bold;
+	text-align: center;
+	font-family: Calibri, Arial;
+	line-height: 12px;
+}
+
+h4 {font-weight:400; font-size:20px;}
+
+.link-box {
+	margin-bottom: 3px;
+	background-color: #273135;
+	padding: 3px;
+}
+
+.link-box:hover {
+	background-color: #2d4955;
+}
+
+.link-box:active {
+	box-shadow: 0 0 0 .2rem #2d495596;
+	border-radius: 1px;
+}
+
+.link-holder {
+	margin:20px;
+	font-size:14px;
+}
+
+.floating-button {
+	opacity: 0;
+	height: 40px;
+	width: 40px;
+	position: fixed;
+	bottom: 13px;
+	display: none;
+	color: white;
+	text-align: left;
+	left: 13px;
+	z-index: 311;
+	background:no-repeat center/100%;
+	transition: ease-in-out .15s;
+	cursor:cell;
+}
+
+.floating-button:hover {
+	bottom:17px;
+	height: 43px;
+	width: 43px;
+}
+
+.link-ele {
+	color: #2a9fd6;
+	text-decoration: none;
+	background-color: transparent;
+	cursor:pointer;
+}
+
+.link-ele:hover {
+	text-decoration: underline;
+	color:#2a9fd6;
+}
+
+.form-text:focus {
+	color: #495057;
+	background-color: #fff;
+	border-color: #80bdff;
+	box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
+}
+
+.form-text {
+	display: block;
+	padding: 0px 0px 0px .75rem;
+	font-size: 1rem;
+	line-height: 1.5;
+	color: #495057;
+	background-color: #fff;
+	background-clip: padding-box;
+	border: 1px solid #ced4da;
+	border-radius: .25rem;
+	transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+}
+
+.form-text::placeholder {
+	color: #6c757d;
+	opacity: 1;
+}
+
+.form-text.invalid {
+	border-color: #e74c3c;
+}
+
+.invalid-feedback {
+	display: block;
+	margin: none;
+	font-size: 0px;
+	color: #e74c3c;
+}
+
+.form-text.invalid:focus {
+	border-color: #e74c3c;
+	-webkit-box-shadow: 0 0 0 0.2rem rgba(231, 76, 60, 0.25);
+	box-shadow: 0 0 0 0.2rem rgba(231, 76, 60, 0.25);
+}
+
+.btn {
+	width: 75px;
+	height: calc(100% - 2px); /* compensate for border */
+	flex: none;
+	cursor: pointer;
+	border: 1px solid transparent;
+	border-radius: .25rem;
+	background: transparent;
+	padding: 0px;
+	font-size: 15px;
+	transition: color .15s ease-in-out,background-color .15s ease-in-out, border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+	margin: 0px 3px;
+} 
+
+.btn-blue{border-color: #2A9FD6;color: #2A9FD6} /* colors */
+.btn-blue:hover{background-color:#2A9FD6;color: #fff}
+.btn-green{border-color: #77B300;	color: #77B300}
+.btn-green:hover{background-color: #77B300;color: #fff}
+.btn-orange{border-color: #FF8800;	color: #FF8800}
+.btn-orange:hover{background-color: #FF8800;color: #fff}
+.btn-red {border-color: #CC0000;color: #CC0000}
+.btn-red:hover{background-color:#CC0000;color: #fff}
+.bge-blue{background-color: #2A9FD6} /* badges */
+.bge-green{background-color: #77B300}
+.bge-orange{background-color: #FF8800}
+.bge-red{background-color: #CC0000}
+
+.btn-blue:focus{
+	box-shadow: 0px 0px 0px 3px rgba(0,123,255,.5);
+	outline:0;
+}
+.btn-green:focus{
+	box-shadow: 0px 0px 0px 3px rgba(119, 179, 0,.5);
+	outline:0;
+}
+.btn-red:focus{
+	box-shadow: 0px 0px 0px 3px rgba(204, 0, 0,.5);
+	outline:0;
+}
+.btn-orange:focus{
+	box-shadow: 0px 0px 0px 3px rgba(255, 136, 0,.5);
+	outline:0;
+}
+
+.form {
+	flex: 1 1 0;
+	height: auto;
+	font-size: 0.8rem;
+	margin-bottom: 0px;
+}
+
+.button-container {
+	height: 55px;
+	display: flex;
+	flex-direction: row;
+}
+
+@media only screen and (max-width: 768px) {
+	.container {
+		width: calc(100% - 40px);
+	}
+	
+	.btn {
+		flex: 1 1 0;
+	}
+	
+	.form {
+		height: 110px;
+		flex-direction: column;
+	}
+}

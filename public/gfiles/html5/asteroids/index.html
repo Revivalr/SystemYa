@@ -1,0 +1,56 @@
+<html>
+  <head>
+    <script src="jquery-1.4.1.min.js"></script>
+    <script src="vector_battle_regular.typeface.js"></script>
+    <script src="ipad.js"></script>
+    <script src="game.js"></script>
+    <style>
+	  body {background-color: #000;}
+      #canvas { border:1px solid black; top:0px; left:0px; background-color: #fff;}
+      .button { position:absolute; border:1px solid black; }
+      #left-controls { position:absolute; left:1px; bottom:0px; display:none; }
+      #right-controls { position:absolute; right:1px; bottom:0px; display:none; }
+      #up { width:200px; height:100px; bottom:100px;}
+      #left { width:100px; height:100px; bottom:0px;}
+      #right { width:100px; height:100px; bottom:0px; left:100px; }
+      #space { width:200px; height:200px; bottom:0px; right:0px; }
+    </style>
+<div id="back">
+<a href="/goldenera.html" id="backlink">
+<img src="/assets/images/back.png" alt="Home" id="backimg"></a>
+<style>
+#backimg {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 50px;
+  height: 50px;
+  object-fit: scale-down;
+}
+#backlink {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 50px;
+  height: 50px;
+  object-fit: scale-down;
+  background-color: ;
+  color: none;
+}
+</style>
+    </div>
+  </head>
+  <body>
+    <div id="game-container" align="center">
+      <canvas id="canvas" width="780" height="540"></canvas>
+      <div id="left-controls">
+        <div id="up" class='button'>THRUST</div>
+        <div id="left" class='button'>LEFT</div>
+        <div id="right" class='button'>RIGHT</div>
+      </div>
+      <div id="right-controls">
+        <div id="space" class='button'>FIRE</div>
+      </div>
+    </div>
+  </body>
+</html>

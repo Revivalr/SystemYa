@@ -1,0 +1,5 @@
+# HTTrack Website Copier Cookie File
+# This file format is compatible with Netscape cookies
+.crasty.cf	TRUE	/	FALSE	1999999999	__cfduid	d22b308bfb4c64b47f6b7147070caf75a1605744937
+crasty.cf	TRUE	/	FALSE	1999999999	SameSite	Lax
+

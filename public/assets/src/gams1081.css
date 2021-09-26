@@ -1,0 +1,86 @@
+.container {
+	width: 1035px;
+	margin: 20px auto 0px auto;
+	background: url('noise.png');
+	padding: 10px;
+	border: 2px #57b4ff solid;
+	border-radius: 7px;
+}
+
+.container h1,
+.container h2,
+.container h3,
+.container h4 {
+	font-family: Michroma, Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	text-transform: uppercase;
+	color: #57b4ff;
+}
+
+.container h1 {
+	font-size: 25px;
+	text-align: center;
+	font-family: Michroma, Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.container p {
+	color: #57b4ff;
+	
+}
+
+#ifr,
+#fla {
+	width: 100%;
+	display: none;
+	position: fixed;
+	top: 65px;
+	border: 0;
+	margin: 0;
+	padding: 0;
+	height: calc(100% - 109px);
+	background: white;
+	z-index: 3;
+}
+
+.false-link {
+	color: #57b4ff;
+	width: max-content;
+	transition: none;
+}
+
+.false-link:hover {
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.close-container {
+	position: absolute;
+	display: none;
+	width: 20px;
+	height: 15px;
+	right: 20px;
+	top: 3px;
+	background: rgb(81, 169, 241);
+	border-radius: 5px;
+	border: 2px solid rgb(255, 255, 255);
+	font-size: 15px;
+	line-height: 15px;
+	text-align: center;
+	cursor: pointer;
+	z-index: 31;
+	transition: ease-in-out 0.1s;
+}
+
+.close-container:hover {
+	background: rgb(114, 193, 255);
+}
+
+@media only screen and (max-width: 1078px) {
+	.container {
+		width: calc(100% - 25px);
+	}
+
+	.container h1 {
+		font-size: 18px;
+		text-align: left;
+	}
+}

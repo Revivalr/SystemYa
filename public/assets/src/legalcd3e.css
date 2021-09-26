@@ -1,0 +1,27 @@
+body {
+	margin:20px;
+	color:black;
+	font-family: 'Roboto', sans-serif;
+}
+
+h1 {
+	font-size: 32px;
+	font-weight: 600;
+}
+
+h2 {
+	font-weight: 600;
+	font-size: 28px;
+}
+
+a {
+	color: #2062ff;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+	color: #467dff;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto&amp;display=swap');
