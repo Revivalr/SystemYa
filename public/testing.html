@@ -1,0 +1,34 @@
+<!-- <widgetbot
+server="885233889231114271"
+channel="887529092998631436"
+width="800"
+height="600"
+></widgetbot> -->
+<script src="https://cdn.jsdelivr.net/npm/@widgetbot/html-embed"></script>
+
+<div class='clickable'><p><a href=""><span>-.-- --- ..- - ..- -... . / -.. --- .-- -. .-.. --- .- -.. . .-.</span></p></a></div>
+<sub>ʸᵒᵘᵗᵘᵇᵉ</sub>
+
+<script type="text/javascript" src="assets/js/dist/xmorse.min.js"></script>
+<script type="text/javascript">
+var MORSE_CODE = {".-": "a", "-...":"b", "-.-.": "c", "-..": "d", ".":"e", "..-.":"f", "--.":"g", "....":"h", "..":"i", ".---":"j", "-.-":"k", ".-..":"l", "--":"m", "-.":"n", "---":"o", ".--.":"p", "--.-":"q", ".-.":"r", "...":"s", "-":"t", "..-":"u", "...-":"v", ".--":"w", "-..-":"x", "-.--":"y", "--..":"z", ".----":"1", "..---":"2", "...--":"3", "....-":"4", ".....":"5", "-....":"6", "--...":"7", "---..":"8", "----.":"9", "-----":"0", "|":" "};
+
+var decodeMorse = function(morseCode){
+  var words = (morseCode).split('  ');
+  var letters = words.map((w) => w.split(' '));
+  var decoded = [];
+
+  for(var i = 0; i < letters.length; i++){
+    decoded[i] = [];
+    for(var x = 0; x < letters[i].length; x++){
+        if(MORSE_CODE[letters[i][x]]){
+            decoded[i].push( MORSE_CODE[letters[i][x]] );
+        }
+    }
+  }
+
+  return decoded.map(arr => arr.join('')).join(' ');
+}
+
+decodeMorse('.... . -.--   .--- ..- -.. .');
+</script>

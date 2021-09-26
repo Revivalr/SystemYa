@@ -16,7 +16,7 @@ const http = require('http'),
 app.use('/', express.static(__dirname + '/public'));
 app.use('/', gamermode);
 // Simple HTTP server.
-app.listen(process.env.PORT || config.port, () => {console.log(`Hacker proxy running at http://localhost:${config.port}`)});
+app.listen(process.env.PORT || config.port, () => {console.log(`SysYa running at http://localhost:${config.port}`)});
  
 // This is the HTTPS server. (use this if you are self-hosting)
 //https.createServer({
