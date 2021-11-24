@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<title>jor1k</title>
+		<style>
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata&display=swap');
+
+body {
+	margin: 0;
+	background: #FFF;
+}
+
+.ns {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.wrapper {
+	margin: 20px;
+}
+
+.panel-wrapper {
+	position: relative;
+	display: flex;
+	height: 400px;
+	gap: 15px;
+	margin: auto;
+	width: 100%;
+}
+
+.terminal > tbody {
+	width: 100%;
+	height: 100%;
+}
+
+.container {
+	font-family: 'Inconsolata', monospace;
+	font-size: 14px;
+	resize: none;
+	padding: 7px;
+	height: calc(400px - 14px);
+	align-content: center;
+	text-align: center;
+	background: #000;
+	width: 100%;
+}
+
+.container canvas {
+	width: 100%;
+	height: 100%;
+}
+
+#fb {
+	border: none !important;
+}
+
+.tts tr {
+	max-height: 15px;
+	display: block;
+	text-align: left;
+}
+
+.display {
+	padding: 0px;
+	height: 400px;
+}
+
+.controls {
+	font-family: 'Inconsolata', monospace;
+	position: relative;
+	display: flex;
+	width: 100%;
+	line-height: 30px;
+	top: 8px;
+	flex-flow: row;
+	justify-content: center;
+	align-content: center;
+	gap: 20px;
+}
+
+.controls * {
+	display: block;
+	border-width: 1px;
+}
+
+.interactable {
+	background: #000;
+	display: block;
+	position: relative;
+	width: 30px;
+	height: 30px;
+	font-size: 22px;
+	text-align: center;
+	line-height: 30px;
+	color: #fff;
+	transition: ease-in-out 0.1s;
+}
+
+.interactable:hover {
+	background: #f1f1f1;
+	color: #000;
+	outline: 1px solid #000;
+}
+
+.left-bar, .right-bar {
+	display: flex;
+	gap: 20px;
+	align-items: center;
+	height: auto;
+	width: 300px;
+}
+
+.right-bar {
+	margin-left: auto;
+}
+
+.left-bar {
+	margin-right: auto;
+}
+
+#stats {
+	width: 80px;
+}
+
+#clipboard {
+	resize: none;
+	width: 45px;
+}
+
+.invis {
+	position: absolute;
+	display: none;
+}
+
+.controls input[type='text'], .controls textarea {
+	width: 100%;
+	height: 100%;
+	border: 1px solid #000;
+	padding: 0px 10px 0px 10px;
+	margin: 0px;
+	outline: none;
+}
+		</style>
+	</head>
+	<body>
+		<input type='file' class='file-picker invis'></input>
+		<div class='wrapper'>
+			<div class='panel-wrapper'>
+				<div class='container tts'>
+					<table id='tty' class='terminal' cellpadding="0" cellspacing="0"></table>
+				</div>
+				<div class='container display'>
+					<canvas id="fb" class="screen" width="640" height="400">Framebuffer uses canvas</canvas>
+				</div>
+			</div>
+			<div class='controls'>
+				
+				<div class='left-bar'><input type='text' class='load-path' value='/home/user' /></div>
+				
+				<div class='interactable material-icons ns file-upload'>create_new_folder</div>
+				
+				<div class='interactable material-icons ns download-path' title='Download of folder'>cloud_download</div>
+				
+				<div class='interactable material-icons ns' onclick='jor1k.fs.Sync("home/user")' title='Download of folder'>cloud_upload</div>
+				
+				<div class='interactable material-icons ns fullscreen' title='Fullscreen'>fullscreen</div>
+				
+				<div class='right-bar'>
+					<textarea type='text' id='clipboard' spellcheck='false'>clipb</textarea>
+					
+					<input type='checkbox' class='audio-toggle'>Audio</input>
+					
+					<span id='stats'></span>
+				</div>
+			</div>
+		</div>
+		<script src="jo/jor1k-master-min.js"></script> 
+		<script src='jo/demo.js'></script>
+		<script>
+var controls = {
+		file_picker: document.querySelector('.file-picker'),
+		file_upload: document.querySelector('.file-upload'),
+		audio_toggle: document.querySelector('.audio-toggle'),
+		fullscreen: document.querySelector('.fullscreen'),
+		download_path: document.querySelector('.download-path'),
+		load_path: document.querySelector('.load-path'),
+	},
+	terminal = document.querySelector('#tty'),
+	display = document.querySelector('#fb'),
+	fullsrc = ele => ele.requestFullscreen()  || ele.mozRequestFullScreen() || ele.webkitRequestFullscreen() || ele.msRequestFullscreen();
+
+controls.download_path.addEventListener('click', () => jor1k.fs.TAR(controls.load_path.value));
+
+controls.fullscreen.addEventListener('click', () => {
+	var blank = document.createElement('canvas');
+	
+	document.body.appendChild(blank);
+	blank.setAttribute('class', 'invis');
+	
+	var blank_ctx = blank.getContext('2d');
+	
+	blank.width = display.width;
+	blank.height = display.height;
+	
+	blank_ctx.fillStyle = '#000'
+	blank_ctx.fillRect(0, 0, blank.width, blank.height);
+	
+	// canvas is empty so fullscreen the terminal
+	if(display.toDataURL() === blank.toDataURL())fullsrc(terminal);
+	// canvas has something on it
+	else fullsrc(display);
+});
+
+controls.audio_toggle.addEventListener('click', () => jor1k.sound.Enabled(audio_toggle.checked));
+
+controls.file_upload.addEventListener('click', () => controls.file_picker.click());
+
+controls.file_picker.addEventListener('change', () => {
+	var path = controls.load_path.value;
+	
+	Array.from(controls.file_picker.files).forEach(file => jor1k.fs.UploadExternalFile(path, file));
+});
+	
+		</script>
+	</body>
+</html>

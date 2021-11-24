@@ -12,12 +12,13 @@ const http = require('http'),
     gamermode = (req, res) => {
         if (req.url.startsWith(config.prefix)) return proxy.request(req, res);
         req.pathname = req.url.split('#')[0].split('?')[0];
-        req.query = {};};
+        req.query = {};
+    };
 app.use('/', express.static(__dirname + '/public'));
 app.use('/', gamermode);
 // Simple HTTP server.
-app.listen(process.env.PORT || config.port, () => {console.log(`SysYa running at http://localhost:${config.port}`)});
- 
+app.listen(process.env.PORT || config.port, () => { console.log(`SysYa running at http://localhost:${config.port}`) }); { console.log(`If you would like to run classic SysYa change "/public" in line 17 to be "/old"`) };
+
 // This is the HTTPS server. (use this if you are self-hosting)
 //https.createServer({
 //	  key: fs.readFileSync('./ssl/default.key'),

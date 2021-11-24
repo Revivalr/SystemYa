@@ -1,0 +1,134 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset='utf-8'>
+		<style>
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata&display=swap');
+
+body {
+	background: black;
+	margin: 0;
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+}
+
+.emscripten {
+	display: inline-block;
+	position: fixed;
+	margin: auto;
+	top: 0px;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	width: 100vw;
+	height: 100vh;
+	z-index: 1;
+}
+
+.info {
+	z-index: 5;
+	padding: 25px;
+	background: #FFF;
+	border: 1px solid #000;
+	margin: auto;
+	position: relative;
+	top: 0px;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	display: none;
+	align-content: center;
+	align-items: center;
+	justify-content: space-evenly;
+	gap: 15px;
+	color: #777;
+	font-family: 'Inconsolata', monospace;
+	user-select: none
+}
+
+.info[data-open='true'] {
+	display: flex;
+}
+
+.info .desc {
+	font-weight: bold;
+}
+
+.bar {
+	width: 150px;
+	height: 10px;
+	background: #EEE;
+	border: 1px solid #BBB;
+	display: none;
+}
+
+.bar[data-open='true'] {
+	display: block;
+}
+
+.bar .fill {;
+	height: 100%;
+	background: #07D;
+	outline: 1px solid #37A;
+	display: block;
+	z-index: 7;
+}
+	</style>
+	</head>
+	<body>
+		<div class='info'>
+			<div class='desc'></div>
+			<div class='bar'><div class='fill'></div></div>
+		</div>
+		<canvas class='emscripten' id='canvas'></canvas>
+		<script>
+var canvas = document.querySelector('canvas'),
+	info = {
+		wrap: document.querySelector('.info'),
+		desc: document.querySelector('.desc'),
+		bar: document.querySelector('.bar'),
+		bar_fill: document.querySelector('.bar .fill'),
+	},
+	dupe = event => window.dispatchEvent(new event.constructor(event.type, Object.fromEntries(Object.getOwnPropertyNames(event.constructor.prototype).map(x => [ x, event[x] ])))),
+	params = new URLSearchParams(location.search),
+	version = (params.get('data') || 1),
+	route = url => (console.log(url), url.replace('index.', version + '.') + '?z');
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+canvas.addEventListener('webglcontextlost', () => location.reload());
+
+if(parent.location != location){
+	parent.addEventListener('keydown', dupe);
+	parent.addEventListener('keyup', dupe);
+}
+
+fetch(version + '.js').then(res => res.text()).then(script => new Function('Module', 'XMLHttpRequest', 'fetch', script + '\n//# sourceURL=sonic' + version)({
+	postRun: [ () => info.wrap.dataset.open = info.bar.dataset.open = false ],
+	print(...text){
+		console.log(...text);
+	},
+	printErr(...text){
+		console.error(...text);
+	},
+	canvas: canvas,
+	setStatus(...text){
+		text[0].replace(/(Downloading data...) \((\d+)\/(\d+)\)/, (match, msg, val, max) => {
+			info.bar_fill.style.width = ((Number(val) * 100) / Number(max)) + '%';
+			info.desc.textContent = msg;
+			
+			info.wrap.dataset.open = info.bar.dataset.open = true;
+		});
+		
+		console.info(...text);
+	},
+}, class extends XMLHttpRequest {
+	open(method, url, ...args){
+		return super.open(method, route(url), ...args);
+	}
+}, new Proxy(fetch, { apply: (target, that, [ url, opts ]) => Reflect.apply(target, that, [ route(url), opts ]) })));
+		</script>
+	</body>
+</html>

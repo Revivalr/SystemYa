@@ -1,0 +1,216 @@
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata&display=swap');
+
+body {
+	margin: 0px;
+	font-family: Calibri;
+	background: #000;
+}
+
+.console {
+	display: flex;
+	flex-direction: column;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: #242424;
+	top: 0px;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	overflow-y: auto;
+}
+
+.console .input, .console .input textarea, .console .output {
+	font-size: 13px;	
+	color: #FFF;
+	background: #0000;
+	border: none;
+}
+
+.console .input  textarea {
+	resize: none;
+	height: 100%;
+	height: 100%;
+}
+
+.console .input {
+	resize: none;
+	height: 100%;
+	min-height: 60px;
+	padding-left: 22px;
+	position: relative;
+}
+
+.console .input::before {
+	content: '';
+	width: 10px;
+	height: 10px;
+	background: url(icons-small.svg) 50px -20px;
+	display: block;
+	position: absolute;
+	left: 6px;
+	top: 5px;
+}
+
+.console .output {
+	display: flex;
+	flex-direction: column;
+	flex: auto;
+}
+
+.console .output .log {
+	--border: #333;
+	padding-left: 22px;
+	min-height: 20px;
+	line-height: 20px;
+	position: relative;
+	font-size: 12px;
+	font-family: Consolas, Lucida Console, Courier New, monospace;
+	--object-text: #939393;
+	border-bottom: 1px solid var(--border);
+	/*border-top: 1px solid var(--border);*/
+}
+
+.console .output .log:active {
+	--border: hsl(214deg 47% 48%);
+	background-color: hsl(214deg 19% 20%);
+}
+
+.console .output .log::before {
+	content: '';
+	width: 10px;
+	height: 10px;
+	background: url(icons-small.svg);
+	display: none;
+	position: absolute;
+	left: 6px;
+	top: 5px;
+}
+
+.console .output .error::before {
+	display: block;
+	background-position: 30px -60px;
+}
+
+.console .output .error {
+	--border: #5c0000;
+	background-color: #290000;
+	color: #ff8080;
+}
+
+.console .output .warn::before {
+	display: block;
+	background-position: 70px -100px;
+}
+
+.console .output .warn {
+	--border: rgb(102, 85, 0);
+	background-color: hsl(50deg 100% 10%);
+	color: rgb(255 253 250);
+}
+
+.console .output .result::before {
+	display: block;
+	background-position: 0px -40px;
+}
+
+.console .output .debug {
+	color: #4d88ff;
+}
+
+.console .output .link {
+	color: #59C;
+	text-decoration: underline;
+}
+
+.console .output .link:hover {
+	color: #7dbae9;
+}
+
+.console .output .link:active {
+	color: #52a3e2;
+}
+
+.console .output .obj .toggle {
+	width: 10px;
+	height: 10px;
+	background: url(triangles.svg@x) 32px 24px;
+	position: absolute;
+	left: 8px;
+	top: 5px;
+}
+
+/* open */
+.console .output .obj:not(.preview) > .toggle {
+	transform: rotate(90deg);
+}
+
+.console .output .obj {
+	padding-left: 22px;
+	position: relative;
+	
+}
+
+/* hide sub toggles in  preview */
+.console .output .obj.preview .obj .toggle {
+	display: none;
+}
+
+.console .output .obj.preview .obj {
+	padding-left: 0px;
+}
+
+.console .output .obj.preview {
+	font-style: italic;
+	display: flex;
+}
+
+.console .output .obj.preview .entry {
+	margin-left: 0px;
+}
+
+.console .output .obj .brace {
+	color: var(--object-text);
+}
+
+.console .output .obj .seperator {
+	color: var(--object-text);
+	margin-right: 5px;
+	display: inline;
+}
+
+.console .output .obj .entry {
+	display: flex;
+	flex-direction: row;
+	gap: 5px;
+	margin-left: 20px;
+}
+
+.console .output .obj .key {
+	color: #dcdcaa;
+}
+
+.console .output .obj .key::after {
+	content: ':';
+	color: var(--object-text);
+}
+
+.console .output .obj.preview.array > .entry .key {
+	display: none;
+}
+
+.console .output .obj .boolean, .console .output .obj .number {
+	color: #9980ff
+}
+
+.console .output .obj .string {
+	color: #a97c6a;
+}
+
+.console .output .undefined {
+	color: #a1a1a1;
+}
+
+* {
+	outline: none;
+}

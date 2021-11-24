@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset='utf-8'></meta>
+		<style>
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata&display=swap');
+
+body {
+	margin: 0px;
+	position: relative;
+	display: flex;
+	flex-direction: row;
+	height: 100vh;
+}
+
+* {
+	outline: none;
+}
+
+.editor, .output {
+    position: relative;
+    border: 1px solid black;
+	width: 50%;
+}
+
+.editor {
+	padding: 10px;
+	white-space: pre;
+	overflow-x: auto;
+	font-size: 14px;
+	font-family: 'Inconsolata', monospace;
+	border-right: none;
+	width: calc(50% - 20px);
+}
+		</style>
+	</head>
+	<body>
+		<div class='editor' contenteditable></div>
+		<iframe class='output'></iframe>
+		<script>
+var editor = document.querySelector('.editor'),
+	output = document.querySelector('.output'),
+	update = () => output.setAttribute('srcdoc', editor.textContent);
+
+editor.textContent = '<h3>Welcome to the real-time HTML editor!<\/h3>\r\n<p>Type HTML in the textarea above, and it will magically appear in the frame below.<\/p>';
+
+update();
+
+editor.addEventListener('input', () => update());
+		</script>
+	</body>
+</html>
